@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # route for google map nearby search
   get "/search", to: "google_maps#search"
 
+  # route to get other party coor
+  get "/users/find/:username", to: "users#find_party"
+
   # Defines the root path route ("/")
   # root "articles#index"
 

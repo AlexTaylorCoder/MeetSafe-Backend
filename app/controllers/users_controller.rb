@@ -19,6 +19,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/find/username
+  def find_party
+    # begin
+    #   user = User.find_by(username: params[:username])
+    #   coor = {lat: user.lat, lng: user.lng}
+    #   render json: coor, status: :accepted
+    # rescue ActiveRecord::RecordNotFound => e
+    #   render json: { error: "#{e.model} not found" }, status: :not_found
+    # end
+    user = User.find_by(username: params[:username])
+    if user
+      coor = {lat: user.lat, lng: user.lng}
+      render json: coor, status: :accepted
+    else 
+      render json: { error: "User not found" }, status: :not_found
+    end
+  end
+
   # POST /users
   def create
     @user = User.new(create_user)
