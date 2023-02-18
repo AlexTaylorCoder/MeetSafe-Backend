@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   # get '/auth', to: 'users#show'
   post '/signup', to: 'users#create'     # params : name, password, email, funds
   patch '/users', to: 'users#update'    # params : funds
+  
 
   # # Login and Logout Routes - Sessions.rb
+  get '/auth', to: 'sessions#index'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 

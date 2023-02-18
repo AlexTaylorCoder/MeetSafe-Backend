@@ -8,6 +8,7 @@ class ApplicationController < ActionController::API
   # def current_user
   #   User.find_by(id: session[:user_id])
   # end
+  private
 
   def record_invalid invalid
     render json: {errors: invalid.record.errors.full_messages}
@@ -16,6 +17,7 @@ class ApplicationController < ActionController::API
   def record_not_found invalid
     render json: {errors: invalid.message}
   end
+  
 end
 
 # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response

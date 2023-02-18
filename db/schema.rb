@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_204733) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_18_221305) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,17 +50,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_204733) do
   create_table "exchanges", force: :cascade do |t|
     t.integer "invite_code"
     t.string "address_1"
-    t.integer "address_1_lat"
-    t.integer "address_1_lng"
+    t.decimal "address_1_lat"
+    t.decimal "address_1_lng"
     t.string "address_2"
-    t.integer "address_2_lat"
-    t.integer "address_2_lng"
+    t.decimal "address_2_lat"
+    t.decimal "address_2_lng"
     t.string "meeting_address"
-    t.integer "meeting_address_lat"
-    t.integer "meeting_address_lng"
+    t.decimal "meeting_address_lat"
+    t.decimal "meeting_address_lng"
     t.datetime "meettime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "details"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -95,8 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_204733) do
     t.string "address"
     t.string "state"
     t.integer "zipcode"
-    t.integer "lat"
-    t.integer "lng"
+    t.decimal "lat"
+    t.decimal "lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
