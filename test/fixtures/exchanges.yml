@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invite_code: 1
+  address_1: MyString
+  address_1_lat: 1
+  address_1_lng: 1
+  address_2: MyString
+  address_2_lat: 1
+  address_2_lng: 1
+  meeting_address: MyString
+  meeting_address_lat: 1
+  meeting_address_lng: 1
+  meettime: 2023-02-17 22:08:40
+
+two:
+  invite_code: 1
+  address_1: MyString
+  address_1_lat: 1
+  address_1_lng: 1
+  address_2: MyString
+  address_2_lat: 1
+  address_2_lng: 1
+  meeting_address: MyString
+  meeting_address_lat: 1
+  meeting_address_lng: 1
+  meettime: 2023-02-17 22:08:40

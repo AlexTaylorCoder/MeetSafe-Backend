@@ -1,0 +1,2 @@
+class UserExchange < ApplicationRecord
+end
