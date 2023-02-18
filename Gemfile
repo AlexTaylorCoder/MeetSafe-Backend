@@ -52,3 +52,5 @@ end
 gem "byebug", "~> 11.1"
 
 gem "actioncable", "~> 7.0"
+
+gem "twilio-ruby", "~> 5.74"
