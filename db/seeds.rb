@@ -12,11 +12,11 @@
 # Review.destroy_all
 
 faiz = User.create(username: "faiz", password: "Faiz.3", email: "faiz@gmail.com", address: "100-19 5th St",
-state: "New York", zipcode: "11322", lat: 130, lng: 193)
+state: "New York", zipcode: "11322", lat: 40.7052878, lng: -74.013904)
 
 
 alex = User.create(username: "alex", password: "alex.2", email: "alex@gmail.com", address: "101-19 8th St",
-state: "New York", zipcode: "11922", lat: 150, lng: 133)
+state: "New York", zipcode: "11922", lat: 40.7527277, lng: -73.97723529999999)
 
 faiz_alex_exchange = Exchange.create(invite_code: 1234, address_1: "100-19 5th St New York 
 11322", address_1_lat: faiz.lat, address_1_lng: faiz.lng, address_2: "101-19 8th St New York 11922", address_2_lat: alex.lat,
