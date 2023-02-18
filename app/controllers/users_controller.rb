@@ -16,13 +16,14 @@ class UsersController < ApplicationController
       render json: @current_user, status: :ok
     else 
       render json: "Not authenticated", state: :unauthorized
+    end
   end
 
   # POST /users
   def create
     @user = User.new(create_user)
     if @user.save
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity

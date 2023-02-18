@@ -13,6 +13,26 @@ class ExchangesController < ApplicationController
     render json: @exchange
   end
 
+  def check_location 
+    exchange = Exchange.find(params[:exchange_id])
+
+    
+    positions = {
+      meetup_lat: exchange.meeting_address_lat,
+      meetup_lng: exchange.meeting_address_lng, 
+      current_lat: params[:lat],
+      current_lng: params[:lng],
+    }
+    if (exchange.meeting_address_lat - params[:lat]).abs < 10 and (exchange.meeting_address_lng - params[:lng]).abs < 10
+      positions[:good] = true
+      render json: positions
+    else
+      positions[:good] = false
+      render json: positions
+    end
+
+  end
+
   # POST /exchanges
   def create
     @exchange = Exchange.new(exchange_params)
@@ -46,6 +66,10 @@ class ExchangesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exchange_params
-      params.require(:exchange).permit(:invite_code, :address_1, :address_1_lat, :address_1_lng, :address_2, :address_2_lat, :address_2_lng, :meeting_address, :meeting_address_lat, :meeting_address_lng, :meettime)
+      params.permit(:invite_code, :address_1, :address_1_lat, :address_1_lng, :address_2, :address_2_lat, :address_2_lng, :meeting_address, :meeting_address_lat, :meeting_address_lng, :meettime)
+    end
+
+    def location_params 
+      params.permit(:lat,:lng)
     end
 end
