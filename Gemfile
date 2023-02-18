@@ -48,3 +48,5 @@ end
 
 
 gem "byebug", "~> 11.1"
+
+gem "actioncable", "~> 7.0"

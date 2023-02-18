@@ -166,6 +166,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  actioncable (~> 7.0)
   bcrypt (~> 3.1.7)
   bootsnap
   byebug (~> 11.1)

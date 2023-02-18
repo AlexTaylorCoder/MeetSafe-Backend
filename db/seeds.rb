@@ -5,14 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.destroy_all 
-UserExchange.destroy_all
-Exchange.destroy_all
-UserReview.destroy_all
-Review.destroy_all
+# User.destroy_all
+# UserExchange.destroy_all
+# Exchange.destroy_all
+# UserReview.destroy_all
+# Review.destroy_all
 
 faiz = User.create(username: "faiz", password: "Faiz.3", email: "faiz@gmail.com", address: "100-19 5th St",
 state: "New York", zipcode: "11322", lat: 130, lng: 193)
+<<<<<<< HEAD
+=======
+
+>>>>>>> c2138b2f9a853943b753d4e789121a91eb2cabd0
 
 alex = User.create(username: "alex", password: "alex.2", email: "alex@gmail.com", address: "101-19 8th St",
 state: "New York", zipcode: "11922", lat: 150, lng: 133)
@@ -32,3 +36,4 @@ content: "Alex the goat")
 
 UserReview.create(user_id: faiz.id, review_id: review1.id)
 UserReview.create(user_id: alex.id, review_id: review2.id)
+# faiz_alex_chat = Chat.create(message: "YOooooo", user_id:alex.id,exchange_id:faiz_alex_exchange.id)
