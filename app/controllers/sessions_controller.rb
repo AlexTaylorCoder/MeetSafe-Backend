@@ -1,21 +1,22 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize, only: :create
+  # skip_before_action :authorize, only: :create
   # post '/logout', to: 'sessions#create'
   # delete '/logout', to: 'sessions#destroy'
 
   #  create method in ruby means finding 
-  user = User.find_by(username: params[:username])
-  if user && user.authenticate(params[:password])
-    session[:user_id] = user.id
-    render json: user, status: :okay
-  else
-    render json: "Invalid Credentials. Try again!", state: :unauthorized
+  def create
+    user = User.find_by_username(params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      render json: user, status: :ok
+    else
+      render json: "Invalid Credentials. Try again!", state: :unauthorized
+    end
   end
 
   def destroy
     session.delete :user_id
   end
- 
 end
 
 

@@ -3,11 +3,11 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
-  private
+  # private
 
-  def current_user
-    User.find_by(id: session[:user_id])
-  end
+  # def current_user
+  #   User.find_by(id: session[:user_id])
+  # end
 
   def record_invalid invalid
     render json: {errors: invalid.record.errors.full_messages}

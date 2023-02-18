@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
+  # before_action :set_user, only: %i[ show update destroy ]
   # skip_before_action :authorize, only: :create
 
   # GET /users
@@ -8,12 +8,12 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+  # user = User.find_by_id(session[:user_id])
   # GET /users/1
   def show
-    # @current_user ||= User.find_by(id: session[:user_id])
-    @current_user = User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by_id(session[:user_id])
     if @current_user
-      render json: @current_user, status: :ok
+      render json: @current_user
     else 
       render json: "Not authenticated", state: :unauthorized
     end
@@ -32,12 +32,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    # user = User.find_by(id: session[:user_id])
-    # if user.update(patch_params)
-    #   render json: user, status: :created
-    # else 
-    #   render json: {error: user.errors.full_messages}
-    # end
     if @user.update(user_params)
       render json: @user
     else
@@ -65,3 +59,15 @@ class UsersController < ApplicationController
       params.permit(:username, :password,:avatar,:phone, :email, :address, :state, :zipcode, :lat, :lng)
     end
 end
+
+
+
+
+
+
+ # user = User.find_by(id: session[:user_id])
+    # if user.update(patch_params)
+    #   render json: user, status: :created
+    # else 
+    #   render json: {error: user.errors.full_messages}
+    # end
