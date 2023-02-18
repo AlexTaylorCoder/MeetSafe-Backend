@@ -100,11 +100,8 @@ GEM
     io-console (0.6.0)
     irb (1.6.2)
       reline (>= 0.3.0)
-<<<<<<< HEAD
     jsonapi-renderer (0.2.2)
-=======
     jwt (2.6.0)
->>>>>>> d235e64bd076bc986529dc6dfd538dbc1c602620
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
