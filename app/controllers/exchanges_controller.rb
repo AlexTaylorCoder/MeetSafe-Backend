@@ -25,6 +25,11 @@ class ExchangesController < ApplicationController
     }
     if (exchange.meeting_address_lat - params[:lat]).abs < 10 and (exchange.meeting_address_lng - params[:lng]).abs < 10
       positions[:good] = true
+      #Get user id from session 
+      #Should use find
+      current_user_exchange = exchange.user_exchanges.where("user_id = ?",)
+
+      current_user_exchange.update!(present:true)
       render json: positions
     else
       positions[:good] = false
@@ -42,6 +47,29 @@ class ExchangesController < ApplicationController
     else
       render json: @exchange.errors, status: :unprocessable_entity
     end
+  end
+
+  #If user doesn't show up give flag option
+  #Should be avaible if 10 min past meettime, other user not in area, and current user in area
+  def flag 
+    exchange = Exchange.find(params[:id])
+
+    reporterisValid = exchange.user_exchanges.find(params[:reporter_id]).present
+    accusedisValid = exchange.user_exchanges.find(params[:accused_id]).present
+
+    if reporterisValid and not accusedisValid
+      if Time.now.to_i - exchange.meettime.to_i > 600000
+        render json: {status: "Successfully Reported!"}
+
+      else
+        render json: {status: "Please wait until 10 minutes after meeting to report!"}
+      end
+    else  
+      render json: {status: "You must be at the meetup location to report!"}
+    end
+      #can flag
+    
+
   end
 
   # PATCH/PUT /exchanges/1

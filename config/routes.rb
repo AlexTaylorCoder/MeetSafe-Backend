@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   resources :chats
   resources :reviews
   resources :exchanges
@@ -21,4 +23,12 @@ Rails.application.routes.draw do
   # # Login and Logout Routes - Sessions.rb
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  #Check user location to see if near meet spot
+
+  post '/exchanges/location', to: 'exchanges#check_location'
+
+  #Check if user can flag
+
+  post '/exchanges/flag', to: 'exchanges#flag'
 end

@@ -15,13 +15,22 @@ class ReviewsController < ApplicationController
 
   # POST /reviews
   def create
-    @review = Review.new(review_params)
+    #Should only be able to review after exchange time passed
 
-    if @review.save
-      render json: @review, status: :created, location: @review
-    else
-      render json: @review.errors, status: :unprocessable_entity
-    end
+    exchange_time = Exchange.find(params[:exchange_id]).meettime
+
+    date_exchange_time = Date.exchange_time
+    if (date_exchange_time < Time.new)
+
+      @review = Review.new(review_params)
+
+      if @review.save
+        render json: @review, status: :created, location: @review
+      else
+        render json: @review.errors, status: :unprocessable_entity
+      end
+    else  
+      render json: {error: "Wait until #{exchange_time.strftime('%m/%d/%Y %I:%M %p')}"}
   end
 
   # PATCH/PUT /reviews/1
