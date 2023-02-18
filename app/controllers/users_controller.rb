@@ -18,6 +18,19 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      #To get credential Rails.credentials.twilio_key, Rails.credentials.twilio_sid
+      #Send email async
+      account_sid = Rails.application.credentials.twilio_sid
+      auth_token = Rails.application.credentials.twilio_key
+      @client = Twilio::REST::Client.new(account_sid, auth_token)
+
+      @client.messages.create(
+        from: '+19405319275',
+        to: @user.phone, 
+        body: "Hey, #{@user.username} welcome to meetSafe! You will recieve texts about upcoming exchanes." 
+      )
+      UserMailer.with(user:@user).welcome_email.deliver_later
+
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -46,6 +59,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :password_digest, :email, :address, :state, :zipcode, :lat, :lng)
+      params.permit(:username, :password,:avatar,:phone, :email, :address, :state, :zipcode, :lat, :lng)
     end
 end
