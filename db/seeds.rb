@@ -13,10 +13,7 @@
 
 faiz = User.create(username: "faiz", password: "Faiz.3", email: "faiz@gmail.com", address: "100-19 5th St",
 state: "New York", zipcode: "11322", lat: 130, lng: 193)
-<<<<<<< HEAD
-=======
 
->>>>>>> c2138b2f9a853943b753d4e789121a91eb2cabd0
 
 alex = User.create(username: "alex", password: "alex.2", email: "alex@gmail.com", address: "101-19 8th St",
 state: "New York", zipcode: "11922", lat: 150, lng: 133)
