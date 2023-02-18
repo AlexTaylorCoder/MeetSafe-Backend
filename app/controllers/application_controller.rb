@@ -2,13 +2,14 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+  before_action :validate_user, except: [:create]
 
-  # private
 
-  # def current_user
-  #   User.find_by(id: session[:user_id])
-  # end
   private
+
+  def validate_user
+    User.find_by(id: session[:user_id])
+  end
 
   def record_invalid invalid
     render json: {errors: invalid.record.errors.full_messages}
