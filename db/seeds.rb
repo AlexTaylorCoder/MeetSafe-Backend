@@ -24,14 +24,14 @@ joe = User.create(username: "joe", password: "joejoe", email: "joe@gmail.com", a
 puts "Now seeding Exchanges"
 faiz_alex_exchange = Exchange.create(invite_code: 1234, address_1: "100-19 5th St New York 
 11322", address_1_lat: faiz.lat, address_1_lng: faiz.lng, address_2: "101-19 8th St New York 11922", address_2_lat: alex.lat,
-address_2_lng: alex.lng, meeting_address: "112-34, 140th ST Ny 22430", meeting_address_lat: 230, meeting_address_lng: 304, details: "Jordan 3, Black, size 10", meettime: "2023-02-26T05:15:50.000Z")
+address_2_lng: alex.lng, meeting_address: "112-34, 140th ST Ny 22430", meeting_address_lat: 40.76, meeting_address_lng: -73.99, details: "Jordan 3, Black, size 10", meettime: "2023-02-26T05:15:50.000Z")
 
 UserExchange.create(user_id: faiz.id, exchange_id: faiz_alex_exchange.id)
 UserExchange.create(user_id: alex.id, exchange_id: faiz_alex_exchange.id)
 
 faiz_joe_exchange = Exchange.create(invite_code: 6969, address_1: "100-19 5th St New York 
 11322", address_1_lat: faiz.lat, address_1_lng: faiz.lng, address_2: "137 Lorimer St Brooklyn 11237", address_2_lat: joe.lat,
-address_2_lng: joe.lng, meeting_address: "112-34, 140th ST Ny 22430", meeting_address_lat: 230, meeting_address_lng: 304, details: "PS6 bundle", meettime: "2023-02-27T05:08:30.000Z")
+address_2_lng: joe.lng, meeting_address: "112-34, 140th ST Ny 22430", meeting_address_lat: 40.44, meeting_address_lng: -74.05, details: "PS6 bundle", meettime: "2023-02-27T05:08:30.000Z")
 
 UserExchange.create(user_id: faiz.id, exchange_id: faiz_joe_exchange.id)
 UserExchange.create(user_id: joe.id, exchange_id: faiz_joe_exchange.id)

@@ -94,6 +94,15 @@ class ExchangesController < ApplicationController
 
   end
 
+  # POST /exchanges/new_meeting/username
+  def new_meeting
+    party = User.find_by(username: params[:username])
+    @exchange = Exchange.create!(new_meeting_params)
+    UserExchange.create!(user_id:session[:user_id], exchange_id:@exchange.id)
+    UserExchange.create!(user_id:party.id, exchange_id:@exchange.id)
+    render json: @exchange
+  end
+
   # PATCH/PUT /exchanges/1
   def update
     if @exchange.update(exchange_params)
@@ -125,6 +134,11 @@ class ExchangesController < ApplicationController
     def create_params 
       params.permit(:address_1, :address_1_lat, :address_1_lng,:meettime)
 
+    end
+
+    def new_meeting_params
+      
+      params.permit(:address_1, :address_1_lat, :address_1_lng, :address_2, :address_2_lat, :address_2_lng, :meeting_address, :meeting_address_lat, :meeting_address_lng, :meettime, :details)
     end
 
     def location_params 
