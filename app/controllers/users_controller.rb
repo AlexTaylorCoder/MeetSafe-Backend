@@ -69,8 +69,8 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def welcome_message 
-      account_sid = "AC46488998e7476f389f1cb0eecbe75e23"
-      auth_token = "429f0669f24e25dfb03e4c3fcb8de40f"
+      account_sid = Rails.application.credentials.account_sid
+      auth_token = Rails.application.credentials.auth_token
       @client = Twilio::REST::Client.new(account_sid, auth_token)
 
       @client.messages.create(

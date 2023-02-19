@@ -123,8 +123,8 @@ class ExchangesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions. 
 
     def invite_message party
-      account_sid = "AC46488998e7476f389f1cb0eecbe75e23"
-      auth_token = "429f0669f24e25dfb03e4c3fcb8de40f"
+      account_sid = Rails.application.credentials.account_sid
+      auth_token = Rails.application.credentials.auth_token
       user = User.find(session[:user_id])
 
       if user.phone
