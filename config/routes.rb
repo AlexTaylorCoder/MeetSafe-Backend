@@ -36,4 +36,9 @@ Rails.application.routes.draw do
   #Check if user can flag
 
   post '/exchanges/flag', to: 'exchanges#flag'
+
+  #User join check 
+
+  get '/join/:id', to: 'exchanges#join'
+  
 end

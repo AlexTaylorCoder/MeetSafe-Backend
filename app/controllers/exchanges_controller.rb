@@ -10,6 +10,9 @@ class ExchangesController < ApplicationController
 
   # GET /exchanges/1
   def show
+    user = find(session[:user_id])
+    exchange = find(params[:id])
+    # UserExchange.where()
     render json: @exchange
   end
 
@@ -38,9 +41,23 @@ class ExchangesController < ApplicationController
 
   end
 
+  def join 
+    #Need to redirect to app somehow
+    #When user clicks link will redirect to frontend, then with id from frontend verifies against backend
+    id = params[:id]
+
+    render json: {link: "http://localhost:4000/exchange/#{id}"}
+
+  end
+
   # POST /exchanges
   def create
-    @exchange = Exchange.new(exchange_params)
+    
+    @exchange = Exchange.new(create_params)
+    UserExchange.create!(user_id:session[:user_id],exchange:@exchange.id)
+
+    @exchange.invite_code = Exchange.last.id + 1
+
 
     if @exchange.save
       render json: @exchange, status: :created, location: @exchange
@@ -88,13 +105,21 @@ class ExchangesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+
     def set_exchange
       @exchange = Exchange.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def exchange_params
-      params.permit(:invite_code, :address_1, :address_1_lat, :address_1_lng, :address_2, :address_2_lat, :address_2_lng, :meeting_address, :meeting_address_lat, :meeting_address_lng, :meettime)
+      
+      params.permit(:address_1, :address_1_lat, :address_1_lng, :address_2, :address_2_lat, :address_2_lng, :meeting_address, :meeting_address_lat, :meeting_address_lng, :meettime)
+    end
+
+    def create_params 
+      params.permit(:address_1, :address_1_lat, :address_1_lng,:meettime)
+
     end
 
     def location_params 
