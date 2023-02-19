@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 
   get 'history', to: 'exchanges#index' 
 
+  # to create new invite with all meeting data
+  post '/exchanges/new_meeting/:username', to: "exchanges#new_meeting"
+
   #User join check 
 
   get '/join/:id', to: 'exchanges#join'
