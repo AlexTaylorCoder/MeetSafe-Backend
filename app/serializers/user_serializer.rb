@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :email, :address, :state, :zipcode, :lat, :lng, :avg_rating, :avatar
+  attributes :id, :username,:email, :address, :state, :zipcode, :lat, :lng, :avg_rating, :avatar
 
   def avg_rating 
     object.reviews.average(:rating)

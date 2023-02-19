@@ -60,12 +60,11 @@ class ExchangesController < ApplicationController
   def create
     
     @exchange = Exchange.new(create_params)
-    UserExchange.create!(user_id:session[:user_id],exchange:@exchange.id)
-
-    @exchange.invite_code = Exchange.last.id + 1
+    @exchange.invite_code = (Exchange.last.id + 1).to_s
 
 
     if @exchange.save
+      UserExchange.create!(user_id:session[:user_id],exchange_id:@exchange.id)
       render json: @exchange, status: :created, location: @exchange
     else
       render json: @exchange.errors, status: :unprocessable_entity
