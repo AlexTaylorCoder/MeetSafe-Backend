@@ -9,5 +9,5 @@ class UserSerializer < ActiveModel::Serializer
       #      Rails.application.routes.url_helpers.rails_representation_url(object.image.variant(resize: "300x300").processed, only_path: true)
       Rails.application.routes.url_helpers.rails_blob_path(object.avatar, host: "local")
     end
-
+  end
 end

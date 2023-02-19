@@ -10,9 +10,15 @@ class ExchangesController < ApplicationController
 
   # GET /exchanges/1
   def show
-    user = find(session[:user_id])
-    exchange = find(params[:id])
-    # UserExchange.where()
+    @exchange = Exchange.find(params[:id])
+    user_exchanges = @exchange.user_exchanges
+
+    hasExchange = user_exchanges.find_by(user_id: session[:user_id])
+
+    if not hasExchange
+      UserExchange.create!(user_id:session[:user_id],exchange_id:params[:id])
+    end
+    #need to see if 
     render json: @exchange
   end
 
