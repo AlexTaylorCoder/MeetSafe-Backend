@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
   post '/exchanges/flag', to: 'exchanges#flag'
 
+  # to create new invite with all meeting data
+  post '/exchanges/new_meeting/:username', to: "exchanges#new_meeting"
+
   #User join check 
 
   get '/join/:id', to: 'exchanges#join'
