@@ -5,6 +5,19 @@ class ApplicationController < ActionController::API
   before_action :validate_user, except: [:create]
 
 
+
+  # def send_message body
+  #   @client = Twilio::REST::Client.new(account_sid, auth_token)
+
+  #   @client.messages.create(
+  #     from: '+19405319275',
+  #     to: @user.phone, 
+  #     body: body
+  #   )
+  #   UserMailer.with(user: @user).welcome_email.deliver_later
+  # end
+
+
   private
 
   def validate_user
