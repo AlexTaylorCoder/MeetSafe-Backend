@@ -40,4 +40,9 @@ Rails.application.routes.draw do
   #get users exchange history
 
   get 'history', to: 'exchanges#index' 
+
+  #User join check 
+
+  get '/join/:id', to: 'exchanges#join'
+  
 end
