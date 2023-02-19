@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   get '/me', to: 'users#show'       # staying logged in 
   # get '/auth', to: 'users#show'
-  post '/signup', to: 'users#create'     # params : name, password, email, funds
-  patch '/users', to: 'users#update'    # params : funds
+  post '/signup', to: 'users#create'     # params : username, password, email
+  patch '/users', to: 'users#update'    
   
 
   # # Login and Logout Routes - Sessions.rb
@@ -36,4 +36,8 @@ Rails.application.routes.draw do
   #Check if user can flag
 
   post '/exchanges/flag', to: 'exchanges#flag'
+  
+  #get users exchange history
+
+  get 'history', to: 'exchanges#index' 
 end

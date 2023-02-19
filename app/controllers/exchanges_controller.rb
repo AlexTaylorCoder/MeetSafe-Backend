@@ -3,8 +3,8 @@ class ExchangesController < ApplicationController
 
   # GET /exchanges
   def index
-    @exchanges = Exchange.all
-
+    user = User.find_by_id(session[:user_id])
+    @exchanges = user.exchanges.all()
     render json: @exchanges
   end
 
