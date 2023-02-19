@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @users = User.all
     render json: @users
   end
-
+  
   # user = User.find_by_id(session[:user_id])
   # GET /users/1
   def show
