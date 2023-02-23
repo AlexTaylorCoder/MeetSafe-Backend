@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  include ActionController::Cookies
+  include ActionController::Cookies #controller inherits Cookies
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   before_action :validate_user, except: [:create]

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-
+  
   resources :chats
   resources :reviews
   resources :exchanges
@@ -41,8 +40,9 @@ Rails.application.routes.draw do
 
   get 'history', to: 'exchanges#index' 
 
-  #User join check 
+  # to create new invite with all meeting data
+  post '/exchanges/new_meeting/:username', to: "exchanges#new_meeting"
 
+  #User join check 
   get '/join/:id', to: 'exchanges#join'
-  
 end
