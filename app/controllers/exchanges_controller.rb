@@ -100,6 +100,8 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.create!(new_meeting_params)
     UserExchange.create!(user_id:session[:user_id], exchange_id:@exchange.id)
     UserExchange.create!(user_id:party.id, exchange_id:@exchange.id)
+    invite_message(party)
+
     render json: @exchange
   end
 
@@ -118,7 +120,32 @@ class ExchangesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions. 
+
+    def invite_message party
+      account_sid = Rails.application.credentials.account_sid
+      auth_token = Rails.application.credentials.auth_token
+      user = User.find(session[:user_id])
+
+      if user.phone
+        @client = Twilio::REST::Client.new(account_sid, auth_token)
+
+        @client.messages.create(
+          from: '+19405319275',
+          to: party.phone, 
+          body: "You have invited to a new exchange at #{@exchange.meettime}"
+        )
+        @client.messages.create(
+          from: '+19405319275',
+          to: user.phone, 
+          body: "You have created a new exchange at #{@exchange.meettime}"
+        )
+      end
+
+      ExchangeMailer.with(exchange:@exchange).new_exchange.deliver_later
+
+    end
+
 
 
     def set_exchange

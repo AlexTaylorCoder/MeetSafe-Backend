@@ -4,4 +4,5 @@ class UserMailer < ApplicationMailer
         @user = params[:user]
         mail(to: @user.email,subject:"Welcome to meetSafe")
     end
+
 end
